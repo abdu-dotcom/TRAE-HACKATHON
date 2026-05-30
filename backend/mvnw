@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+BASEDIR=$(cd "$(dirname "$0")" && pwd)
+WRAPPER_DIR="$BASEDIR/.mvn/wrapper"
+JAR="$WRAPPER_DIR/maven-wrapper.jar"
+PROPS="$WRAPPER_DIR/maven-wrapper.properties"
+mkdir -p "$WRAPPER_DIR"
+if [ ! -f "$JAR" ]; then
+  WRAPPER_URL=$(grep '^wrapperUrl=' "$PROPS" | cut -d'=' -f2-)
+  curl -fsSL "$WRAPPER_URL" -o "$JAR" || wget -q "$WRAPPER_URL" -O "$JAR"
+fi
+exec java -classpath "$JAR" "-Dmaven.multiModuleProjectDirectory=$BASEDIR" org.apache.maven.wrapper.MavenWrapperMain "$@"

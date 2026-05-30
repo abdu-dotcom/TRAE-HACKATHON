@@ -3,6 +3,10 @@
 ## Run
 
 ```bash
+mvnw.cmd -f backend/pom.xml spring-boot:run
+```
+
+```bash
 mvn -f backend/pom.xml spring-boot:run
 ```
 
